@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 const Dday = () => {
-    return (
-        <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
-            Dday
-        </Box>
-    );
-}
+  return (
+    <Box component="section" sx={{ p: 2 }}>
+      Dday
+    </Box>
+  );
+};
 
-export default Dday
+export default Dday;

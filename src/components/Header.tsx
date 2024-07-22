@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 const Header = () => {
   return (
-    <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
+    <Box component="section" sx={{ p: 2 }}>
       Header
     </Box>
   );
-}
+};
 
-export default Header
+export default Header;
