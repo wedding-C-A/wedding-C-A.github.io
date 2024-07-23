@@ -5,6 +5,7 @@ import Dday from './components/Dday';
 import Gallery from './components/Gallery';
 import Header from './components/Header';
 import Map from './components/Map';
+import Name from './components/Name';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           }}
         >
           <Header />
+
+          <Name />
 
           <Gallery />
 
