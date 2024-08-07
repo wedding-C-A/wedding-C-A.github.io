@@ -25,6 +25,9 @@ const Map = () => {
           const options = {
             center: new window.kakao.maps.LatLng(lat, lng),
             level: 3,
+            draggable: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: false,
           };
 
           const map = new window.kakao.maps.Map(container, options);
@@ -130,7 +133,7 @@ position: absolute;
     `}
       </style>
 
-      <Box component="section" id="map" sx={{ p: 2, height: '500px' }}></Box>
+      <Box component="section" id="map" sx={{ p: 2, height: '300px' }}></Box>
     </>
   );
 };

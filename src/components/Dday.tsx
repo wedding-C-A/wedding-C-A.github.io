@@ -1,72 +1,228 @@
-import { Box } from '@mui/material';
-import { differenceInSeconds } from 'date-fns';
+import {
+  Box,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+interface CalenderProps {
+  targetDate: Date;
+}
+
+const StyledCalendarWrapper = styled(Box)(() => ({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'relative',
+  '.react-calendar': {
+    width: '100%',
+    border: 'none',
+    borderRadius: '0.5rem',
+    boxShadow: '4px 2px 10px 0px rgba(0, 0, 0, 0.13)',
+    padding: '3% 5%',
+    backgroundColor: 'white',
+    PointerEvent: 'none',
+  },
+  '.react-calendar__month-view abbr': {
+    color: '#6d6d6d',
+  },
+  '.react-calendar__navigation': {
+    justifyContent: 'center',
+    pointerEvents: 'none',
+    userSelect: 'none',
+  },
+  '.react-calendar__navigation button': {
+    fontWeight: 800,
+    fontSize: '1rem',
+    pointerEvents: 'none',
+    userSelect: 'none',
+  },
+  '.react-calendar__navigation button:focus': {
+    backgroundColor: 'white',
+  },
+  '.react-calendar__navigation button:disabled': {
+    backgroundColor: 'white',
+    color: '#000000',
+  },
+  '.react-calendar__navigation__label': {
+    flexGrow: 0,
+  },
+  '.react-calendar__month-view__weekdays abbr': {
+    textDecoration: 'none',
+    fontWeight: 800,
+  },
+  '.react-calendar__month-view__weekdays__weekday--weekend abbr[title="일요일"]':
+    {
+      color: '#ff0000',
+    },
+  '.react-calendar__tile--now abbr': {
+    color: '#3f51b5',
+  },
+  '.react-calendar__year-view__months__month': {
+    borderRadius: '0.8rem',
+    backgroundColor: '#f5f5f5',
+    flex: '0 0 calc(33.3333% - 10px) !important',
+    marginInlineStart: '5px !important',
+    marginInlineEnd: '5px !important',
+    marginBlockEnd: '10px',
+    padding: '20px 6.6667px',
+    fontSize: '0.9rem',
+    fontWeight: 600,
+    color: '#6d6d6d',
+  },
+  '.react-calendar__tile--hasActive': {
+    backgroundColor: '#3f51b5',
+    abbr: {
+      color: 'white',
+    },
+  },
+  '.react-calendar__tile': {
+    padding: '5px 0px 18px',
+    position: 'relative',
+  },
+  '.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus, .react-calendar__tile--active':
+    {
+      backgroundColor: '#fff',
+      borderRadius: '0.3rem',
+    },
+}));
+
+const StyledCalendar = styled(Calendar)({});
+
+const heartStyle = {
+  position: 'absolute',
+  top: '5px',
+  width: '30px',
+  aspectRatio: '1',
+  borderImage: `
+    radial-gradient(red 69%, transparent 70%) 84.5%/50%
+  `,
+  clipPath: 'polygon(-41% 0, 50% 91%, 141% 0)',
+  borderStyle: 'solid',
+  borderWidth: '10px',
+  borderColor: 'transparent',
+  opacity: '0.5',
+};
+
+const tileStyle: React.CSSProperties = {
+  position: 'relative',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  top: '-26px',
+};
+
+const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
+  const addContent = ({ date }: { date: Date }) => {
+    const targetDate = new Date('2024-10-12');
+
+    if (date.toDateString() === targetDate.toDateString()) {
+      return (
+        <Box sx={tileStyle}>
+          <Box sx={heartStyle}></Box>
+        </Box>
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <StyledCalendarWrapper>
+      <StyledCalendar
+        defaultView="month"
+        value={targetDate}
+        calendarType="gregory"
+        showNeighboringMonth={false}
+        nextLabel={null}
+        prevLabel={null}
+        next2Label={null}
+        prev2Label={null}
+        formatDay={(locale, date) => format(date, 'd')}
+        tileContent={addContent}
+      />
+    </StyledCalendarWrapper>
+  );
+};
+
+interface TimeLeft {
+  days?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+}
+
+const CountDown: React.FC = () => {
+  const targetDate = new Date('2024-10-12T13:00:00Z');
+
+  const calculateTimeLeft = (): TimeLeft => {
+    const difference = +new Date(targetDate) - +new Date();
+    let timeLeft: TimeLeft = {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [targetDate]);
+
+  return (
+    <Box>
+      <Typography
+        variant="h4"
+        sx={{ fontSize: '0.8rem', display: 'inline', color: 'red' }}
+      >
+        {`${timeLeft.days}일 `}
+      </Typography>
+      <Typography variant="h4" sx={{ fontSize: '0.8rem', display: 'inline' }}>
+        {`${timeLeft.hours}시간 ${timeLeft.minutes}분 ${timeLeft.seconds}초 남았습니다`}
+      </Typography>
+    </Box>
+  );
+};
 
 const Dday = () => {
+  const targetDate = new Date('2024-10-12T13:00:00Z');
 
-    // 目標の日時を設定（年月日時分秒、UTCで設定）
-    const targetDateUTC = new Date('2024-10-12T13:00:00Z');
+  return (
+    <Box
+      component="section"
+      sx={{
+        p: 2,
+      }}
+    >
+      <Calender targetDate={targetDate} />
 
-    const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            // 現在の日時を取得
-            const now = new Date();
-
-            // 目標日時までの残り時間（秒単位）を計算
-            const diffInSeconds = differenceInSeconds(targetDateUTC, now);
-
-            if (diffInSeconds <= 0) {
-                clearInterval(timer); // タイマー停止
-                // setCountdown('カウントダウン終了');
-            } else {
-                // 日数、時間、分、秒を計算
-                const days = Math.floor(diffInSeconds / (3600 * 24));
-                const hours = Math.floor((diffInSeconds % (3600 * 24)) / 3600);
-                const minutes = Math.floor((diffInSeconds % 3600) / 60);
-                const seconds = diffInSeconds % 60;
-
-                // カウントダウンを更新
-                // setCountdown(`${days}: ${hours} ${minutes} ${seconds}秒`);
-                setCountdown({
-                    days,
-                    hours,
-                    minutes,
-                    seconds
-                });
-            }
-        }, 1000);
-
-        return () => clearInterval(timer); // コンポーネントがアンマウントされたときにタイマーをクリーンアップ
-    }, []); // 空の依存配列を渡すことで、マウント時にのみ実行されるようにする
-
-
-    return (
-        <Box component="section" sx={{ p: 2 }}>
-            <p>
-                2025/10/12 stu
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <div style={{ display: 'flex', flexFlow: 'column', margin: '0 15px' }}>
-                    <span>{countdown.days}</span>
-                    <span>DAYS</span>
-                </div>
-                <div style={{ display: 'flex', flexFlow: 'column', margin: '0 15px' }}>
-                    <span>{countdown.hours}</span>
-                    <span>HOURS</span>
-                </div>
-                <div style={{ display: 'flex', flexFlow: 'column', margin: '0 15px' }}>
-                    <span>{countdown.minutes}</span>
-                    <span>MINUTES</span>
-                </div>
-                <div style={{ display: 'flex', flexFlow: 'column', margin: '0 15px' }}>
-                    <span>{countdown.seconds}</span>
-                    <span>SECONDS</span>
-                </div>
-            </div>
-        </Box>
-    );
+      <CountDown />
+    </Box>
+  );
 };
 
 export default Dday;
