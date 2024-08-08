@@ -1,10 +1,4 @@
-import {
-  Box,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, Grid, styled, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
@@ -134,21 +128,32 @@ const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
   };
 
   return (
-    <StyledCalendarWrapper>
-      <StyledCalendar
-        defaultView="month"
-        value={targetDate}
-        calendarType="gregory"
-        showNeighboringMonth={false}
-        nextLabel={null}
-        prevLabel={null}
-        next2Label={null}
-        prev2Label={null}
-        formatDay={(locale, date) => format(date, 'd')}
-        tileContent={addContent}
-      />
-    </StyledCalendarWrapper>
+    <Box component="section" sx={{ p: 2 }}>
+      <StyledCalendarWrapper>
+        <StyledCalendar
+          defaultView="month"
+          value={targetDate}
+          calendarType="gregory"
+          showNeighboringMonth={false}
+          nextLabel={null}
+          prevLabel={null}
+          next2Label={null}
+          prev2Label={null}
+          formatDay={(locale, date) => format(date, 'd')}
+          tileContent={addContent}
+        />
+      </StyledCalendarWrapper>
+    </Box>
   );
+};
+
+const styles = {
+  countContainer: {
+    backgroundImage: `url(/assets/countdown.jpg)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: 'white',
+  },
 };
 
 interface TimeLeft {
@@ -182,8 +187,8 @@ const CountDown: React.FC = () => {
   };
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -194,16 +199,43 @@ const CountDown: React.FC = () => {
   }, [targetDate]);
 
   return (
-    <Box>
-      <Typography
-        variant="h4"
-        sx={{ fontSize: '0.8rem', display: 'inline', color: 'red' }}
+    <Box component="section" sx={{ p: 2 }} style={styles.countContainer}>
+      <Grid container justifyContent="center" alignItems="center" spacing={2}>
+        <Grid item>
+          <Box textAlign="center">
+            <Typography variant="h2">{timeLeft.days}</Typography>
+            <Typography variant="h2">DAYS</Typography>
+          </Box>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+        data-aos="fade-up"
+        data-aos-easing="ease-in-out"
+        data-aos-duration="1000"
       >
-        {`${timeLeft.days}일 `}
-      </Typography>
-      <Typography variant="h4" sx={{ fontSize: '0.8rem', display: 'inline' }}>
-        {`${timeLeft.hours}시간 ${timeLeft.minutes}분 ${timeLeft.seconds}초 남았습니다`}
-      </Typography>
+        <Grid item>
+          <Box textAlign="center">
+            <Typography variant="h3">{timeLeft.hours}</Typography>
+            <Typography variant="body2">HOUR</Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box textAlign="center">
+            <Typography variant="h3">{timeLeft.minutes}</Typography>
+            <Typography variant="body2">MINUTES</Typography>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box textAlign="center">
+            <Typography variant="h3">{timeLeft.seconds}</Typography>
+            <Typography variant="body2">SECONDS</Typography>
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
