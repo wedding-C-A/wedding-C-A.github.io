@@ -1,5 +1,6 @@
 import { Box, Paper, styled, Typography } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
+import useLanguage from '../hooks/useLanguage';
 
 const FadeInOutBox = styled(Box)(() => ({
   opacity: 0,
@@ -17,11 +18,10 @@ const FadeInOutBox = styled(Box)(() => ({
 const Greeting = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const message = useLanguage();
 
   useEffect(() => {
     const observedElement = ref.current;
-
-    console.info('observedElement', observedElement);
 
     if (observedElement) {
       const observer = new IntersectionObserver(
@@ -67,7 +67,7 @@ const Greeting = () => {
               letterSpacing: '0.2em',
             }}
           >
-            " 이제 서로, 평생 함께 "
+            {message.greeting.header}
           </Typography>
         </Box>
         <Box
@@ -97,30 +97,17 @@ const Greeting = () => {
               whiteSpace: 'pre-wrap',
             }}
           >
-            서로가 마주보며 다져온 사랑을
-            <br />
-            이제 함께 한 곳을 바라보며
-            <br />
-            걸어갈 수 있는 큰 사랑으로
-            <br />
-            키우고자 합니다. <br />
-            저희 두 사람이 사랑의 이름으로
-            <br />
-            지켜나갈 수 있도록
-            <br />
-            앞날을 축복해 주시면
-            <br />
-            감사하겠습니다.
+            {message.greeting.body}
           </Typography>
         </Box>
         <Box>
           <Typography variant="h2" sx={{ fontSize: '0.8rem' }}>
-            이종식・양해숙의 장남 철중
+            {message.greeting.groom}
           </Typography>
         </Box>
         <Box>
           <Typography variant="h2" sx={{ fontSize: '0.8rem' }}>
-            후지와라 타쿠야・리에코의 삼녀 아야코
+            {message.greeting.bride}
           </Typography>
         </Box>
       </Paper>
