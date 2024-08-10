@@ -139,7 +139,7 @@ const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
           prevLabel={null}
           next2Label={null}
           prev2Label={null}
-          formatDay={(date) => (date ? format(date, 'd') : '')}
+          formatDay={(locale, date) => format(date, 'd')}
           tileContent={addContent}
         />
       </StyledCalendarWrapper>
