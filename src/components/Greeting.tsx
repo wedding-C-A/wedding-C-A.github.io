@@ -1,8 +1,57 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, styled, Typography } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
+
+const FadeInOutBox = styled(Box)(() => ({
+  opacity: 0,
+  transition: 'opacity 2s ease-in-out',
+  // Initial state
+  '&.fade-in': {
+    opacity: 1,
+  },
+  // Animation state
+  '&.fade-out': {
+    opacity: 0,
+  },
+}));
 
 const Greeting = () => {
+  const [show, setShow] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observedElement = ref.current;
+
+    console.info('observedElement', observedElement);
+
+    if (observedElement) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setShow(true);
+          } else {
+            setShow(false);
+          }
+        },
+        {
+          threshold: 0,
+        },
+      );
+
+      observer.observe(observedElement);
+
+      return () => {
+        observer.unobserve(observedElement);
+      };
+    }
+  }, []);
+
   return (
-    <Box component="section" sx={{ p: 2 }}>
+    <FadeInOutBox
+      component="section"
+      sx={{ p: 2 }}
+      ref={ref}
+      className={show ? 'fade-in' : 'fade-out'}
+    >
       <Paper sx={{ py: 2 }}>
         <Box>
           <Typography
@@ -23,7 +72,6 @@ const Greeting = () => {
         </Box>
         <Box
           sx={{
-            // paddingBottom: '4.063rem',
             marginBottom: '2.563rem',
             position: 'relative',
             '&::after': {
@@ -76,7 +124,7 @@ const Greeting = () => {
           </Typography>
         </Box>
       </Paper>
-    </Box>
+    </FadeInOutBox>
   );
 };
 
