@@ -8,9 +8,7 @@ interface GreetingStrings {
   bride: string;
 }
 
-interface WelcomeStrings {
-  // welcome 객체가 현재 비어 있으므로 필요 시 추가 속성을 정의할 수 있습니다.
-}
+interface WelcomeStrings {}
 
 interface LocaleStrings {
   welcome: WelcomeStrings;
