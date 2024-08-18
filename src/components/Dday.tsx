@@ -240,7 +240,7 @@ const CountDown: React.FC = () => {
   );
 };
 
-const Dday = () => {
+const Dday: React.FC = () => {
   const targetDate = new Date('2024-10-12T13:00:00Z');
 
   return (

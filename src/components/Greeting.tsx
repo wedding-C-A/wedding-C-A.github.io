@@ -15,7 +15,7 @@ const FadeInOutBox = styled(Box)(() => ({
   },
 }));
 
-const Greeting = () => {
+const Greeting: React.FC = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
   const message = useLanguage();
