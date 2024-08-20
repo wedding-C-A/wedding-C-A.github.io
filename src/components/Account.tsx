@@ -102,6 +102,7 @@ const AccountAccordion: React.FC = () => {
             </Grid>
           </Grid>
         </AccordionDetails>
+
         <Divider />
 
         <AccordionDetails>
@@ -129,7 +130,9 @@ const AccountAccordion: React.FC = () => {
             </Grid>
           </Grid>
         </AccordionDetails>
+
         <Divider />
+
         <AccordionDetails>
           <Grid container spacing={2}>
             <Grid item xs={12} container alignItems="flex-start">

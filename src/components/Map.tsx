@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography } from '@mui/material';
+import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import { useEffect } from 'react';
 
 declare global {
@@ -10,7 +10,7 @@ declare global {
 
 const WeddingHallInfo: React.FC = () => {
   return (
-    <Box mt={2}>
+    <Box my={2}>
       <Typography className="tit" variant="h6" gutterBottom>
         AW호텔 1층 베아트리체홀
       </Typography>
@@ -83,6 +83,9 @@ const Map: React.FC = () => {
         <Box id="map" sx={{ p: 2, height: '300px' }}></Box>
 
         <WeddingHallInfo />
+
+        <Divider />
+
         <List>
           <ListItem>
             <Typography variant="h6">버스로 오시는 길</Typography>
