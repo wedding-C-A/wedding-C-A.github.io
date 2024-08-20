@@ -8,6 +8,20 @@ declare global {
   }
 }
 
+const WeddingHallInfo: React.FC = () => {
+  return (
+    <Box mt={2}>
+      <Typography className="tit" variant="h6" gutterBottom>
+        AW호텔 1층 베아트리체홀
+      </Typography>
+      <Box>
+        <Typography variant="body1">대구광역시 달서구 성서로 413</Typography>
+        <Typography variant="body1">Tel. 053-589-6700</Typography>
+      </Box>
+    </Box>
+  );
+};
+
 const Map: React.FC = () => {
   const lat: number = 35.85446381623755;
   const lng: number = 128.50674136923243;
@@ -67,6 +81,8 @@ const Map: React.FC = () => {
 
       <Box component="section">
         <Box id="map" sx={{ p: 2, height: '300px' }}></Box>
+
+        <WeddingHallInfo />
         <List>
           <ListItem>
             <Typography variant="h6">버스로 오시는 길</Typography>
