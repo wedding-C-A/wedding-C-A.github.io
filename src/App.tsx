@@ -7,15 +7,12 @@ import Gallery from './components/Gallery';
 import Greeting from './components/Greeting';
 import Header from './components/Header';
 import Map from './components/Map';
-import useBgm from './hooks/useBgm';
+import Sound from './components/Sound';
 
 const App = () => {
-  useBgm({
-    volume: 0.5,
-  });
-
   return (
     <Container maxWidth="md">
+      <Sound />
       <Box sx={{ width: '100%' }}>
         <Paper
           sx={{
