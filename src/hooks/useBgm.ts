@@ -5,14 +5,16 @@ interface UseBgmOptions {
 }
 
 const useBgm = ({ volume = 1 }: UseBgmOptions) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(
+    new Audio('/assets/bgm.mp3'),
+  );
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [savedTime, setSavedTime] = useState<number>(0); // Save the current time of the audio
-  const [wasPlaying, setWasPlaying] = useState<boolean>(false); // Save if audio was playing
+  const [savedTime, setSavedTime] = useState<number>(0);
+  const [wasPlaying, setWasPlaying] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/assets/bgm.mp3');
+    // Initialize audio only once
+    if (audioRef.current) {
       audioRef.current.loop = true;
       audioRef.current.volume = volume;
       audioRef.current.playbackRate = 0.8;
@@ -20,17 +22,17 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        // Pause audio when the tab is not visible
+        // Pause audio and save the current time and playing status
         if (audioRef.current) {
-          setSavedTime(audioRef.current.currentTime); // Save the current time
-          setWasPlaying(isPlaying); // Save if audio was playing
+          setSavedTime(audioRef.current.currentTime);
+          setWasPlaying(isPlaying);
           audioRef.current.pause();
           setIsPlaying(false);
         }
       } else {
-        // Resume audio when the tab becomes visible
+        // Resume audio with the saved time and playing status
         if (audioRef.current) {
-          audioRef.current.currentTime = savedTime; // Restore the saved time
+          audioRef.current.currentTime = savedTime;
           if (wasPlaying) {
             audioRef.current.play().catch((error) => {
               console.error('Error playing BGM:', error);
@@ -44,7 +46,7 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Initial play if needed
-    if (isPlaying) {
+    if (isPlaying && audioRef.current) {
       audioRef.current.play().catch((error) => {
         console.error('Error starting BGM:', error);
       });
@@ -52,10 +54,6 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
 
     // Cleanup
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [volume, isPlaying, savedTime, wasPlaying]);
@@ -64,13 +62,13 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
-        setSavedTime(audioRef.current.currentTime); // Save the current time before pausing
-        setWasPlaying(false); // Update wasPlaying status
+        setSavedTime(audioRef.current.currentTime);
+        setWasPlaying(false);
       } else {
         audioRef.current.play().catch((error) => {
           console.error('Error playing BGM:', error);
         });
-        setWasPlaying(true); // Update wasPlaying status
+        setWasPlaying(true);
       }
       setIsPlaying(!isPlaying);
     }
