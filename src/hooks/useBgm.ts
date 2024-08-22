@@ -5,16 +5,14 @@ interface UseBgmOptions {
 }
 
 const useBgm = ({ volume = 1 }: UseBgmOptions) => {
-  const audioRef = useRef<HTMLAudioElement | null>(
-    new Audio('/assets/bgm.mp3'),
-  );
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [savedTime, setSavedTime] = useState<number>(0);
   const [wasPlaying, setWasPlaying] = useState<boolean>(false);
 
   useEffect(() => {
-    // Initialize audio only once
-    if (audioRef.current) {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('/assets/bgm.mp3');
       audioRef.current.loop = true;
       audioRef.current.volume = volume;
       audioRef.current.playbackRate = 0.8;
@@ -22,7 +20,6 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
-        // Pause audio and save the current time and playing status
         if (audioRef.current) {
           setSavedTime(audioRef.current.currentTime);
           setWasPlaying(isPlaying);
@@ -30,7 +27,6 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
           setIsPlaying(false);
         }
       } else {
-        // Resume audio with the saved time and playing status
         if (audioRef.current) {
           audioRef.current.currentTime = savedTime;
           if (wasPlaying) {
@@ -45,14 +41,6 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Initial play if needed
-    if (isPlaying && audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error('Error starting BGM:', error);
-      });
-    }
-
-    // Cleanup
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
@@ -73,6 +61,20 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
       setIsPlaying(!isPlaying);
     }
   };
+
+  const isMobileDevice = () => {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  };
+
+  useEffect(() => {
+    // Automatically play audio on mobile devices only
+    if (isMobileDevice() && audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.error('Error starting BGM:', error);
+      });
+      setIsPlaying(true);
+    }
+  }, []);
 
   return { isPlaying, togglePlay };
 };
