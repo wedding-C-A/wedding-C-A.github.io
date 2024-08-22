@@ -8,7 +8,7 @@ const useBgm = ({ volume = 1 }: UseBgmOptions) => {
   const audioRef = useRef<HTMLAudioElement | null>(
     new Audio('/assets/bgm.mp3'),
   );
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [savedTime, setSavedTime] = useState<number>(0);
   const [wasPlaying, setWasPlaying] = useState<boolean>(false);
 
