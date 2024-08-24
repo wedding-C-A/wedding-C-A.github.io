@@ -39,9 +39,6 @@ const Map: React.FC = () => {
           const options = {
             center: new window.kakao.maps.LatLng(lat, lng),
             level: 3,
-            draggable: false,
-            scrollwheel: false,
-            disableDoubleClickZoom: true,
           };
 
           const map = new window.kakao.maps.Map(container, options);
