@@ -1,5 +1,6 @@
-import { Box, Divider, List, ListItem, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import useLanguage from '../hooks/useLanguage';
 
 declare global {
   interface Window {
@@ -9,20 +10,24 @@ declare global {
 }
 
 const WeddingHallInfo: React.FC = () => {
+  const message = useLanguage();
+
   return (
     <Box my={2}>
       <Typography className="tit" variant="h6" gutterBottom>
-        AW호텔 1층 베아트리체홀
+        {message.map.address.title}
       </Typography>
       <Box>
-        <Typography variant="body1">대구광역시 달서구 성서로 413</Typography>
-        <Typography variant="body1">Tel. 053-589-6700</Typography>
+        <Typography variant="body1"> {message.map.address.info}</Typography>
+        <Typography variant="body1"> {message.map.address.tel}</Typography>
       </Box>
     </Box>
   );
 };
 
 const Map: React.FC = () => {
+  const message = useLanguage();
+
   const lat: number = 35.85446381623755;
   const lng: number = 128.50674136923243;
 
@@ -73,19 +78,71 @@ const Map: React.FC = () => {
           letterSpacing: '0.2em',
         }}
       >
-        " 오시는 길 "
+        " {message.map.title} "
       </Typography>
 
       <Box component="section">
-        <Box id="map" sx={{ p: 2, height: '300px' }}></Box>
-
         <WeddingHallInfo />
+
+        <Box id="map" sx={{ p: 2, height: '300px' }}></Box>
 
         <Divider />
 
-        <List>
+        <Box sx={{ p: 2 }} textAlign={'left'}>
+          <Box sx={{ mb: 2 }} component="dl">
+            <Typography variant="h6" component="dt">
+              {message.map.subway.title}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.subway.info}
+            </Typography>
+          </Box>
+
+          <Divider />
+
+          <Box sx={{ mb: 2 }} component="dl">
+            <Typography variant="h6" component="dt">
+              {message.map.bus.title}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station1.title}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station1.busRoutes}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station1.localRoutes}
+            </Typography>
+            <br />
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station2.title}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station2.busRoutes}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.bus.station2.localRoutes}
+            </Typography>
+          </Box>
+
+          <Divider />
+
+          <Box component="dl">
+            <Typography variant="h6" component="dt">
+              {message.map.highway.title}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.highway.cont1}
+            </Typography>
+            <Typography variant="body1" component="dd">
+              {message.map.highway.cont2}
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* <List>
           <ListItem>
-            <Typography variant="h6">버스로 오시는 길</Typography>
+            <Typography variant="h6">{message.map.bus.title}</Typography>
             <List>
               <ListItem>
                 <Typography variant="body1">
@@ -141,7 +198,7 @@ const Map: React.FC = () => {
               </ListItem>
             </List>
           </ListItem>
-        </List>
+        </List> */}
       </Box>
     </>
   );

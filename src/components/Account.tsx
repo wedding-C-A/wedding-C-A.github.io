@@ -13,8 +13,11 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import useLanguage from '../hooks/useLanguage';
 
 const AccountContext: React.FC = () => {
+  const message = useLanguage();
+
   return (
     <Box
       pb={4}
@@ -25,25 +28,25 @@ const AccountContext: React.FC = () => {
       }}
     >
       <Typography variant="body1" sx={{ mb: 1 }}>
-        참석이 어려워 직접 축하를 전하지 못하는
+        {message.account.body.cont1}
       </Typography>
       <Typography variant="body1" sx={{ mb: 1 }}>
-        분들을 위해 계좌번호를 기재하였습니다.
+        {message.account.body.cont2}
       </Typography>
       <Typography variant="body1" sx={{ mb: 1 }}>
-        넓은 마음으로 양해 부탁드립니다.
+        {message.account.body.cont3}
       </Typography>
       <Typography variant="body1" sx={{ mb: 1 }}>
-        전해주시는 진심은 소중하게 간직하여
+        {message.account.body.cont4}
       </Typography>
-      <Typography variant="body1">
-        좋은 부부의 모습으로 보답하겠습니다.
-      </Typography>
+      <Typography variant="body1">{message.account.body.cont5}</Typography>
     </Box>
   );
 };
 
 const AccountAccordion: React.FC = () => {
+  const message = useLanguage();
+
   const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleChange = (_: React.SyntheticEvent, isExpanded: boolean) => {
@@ -73,14 +76,21 @@ const AccountAccordion: React.FC = () => {
         id="panel1-header"
       >
         <Typography align="center" sx={{ width: '100%' }}>
-          신랑측
+          {message.account.groom.title}
         </Typography>
       </AccordionSummary>
       <Collapse in={expanded} timeout={500}>
         <AccordionDetails>
           <Grid container spacing={2}>
             <Grid item xs={12} container alignItems="flex-start">
-              <Typography variant="h6">타이틀</Typography>
+              <Box sx={{ mr: 1 }}>
+                <Typography variant="h6">
+                  {message.account.groom.person1.info}
+                </Typography>
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                {message.account.groom.person1.name}
+              </Typography>
             </Grid>
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid
@@ -90,11 +100,11 @@ const AccountAccordion: React.FC = () => {
                 direction="row"
                 alignItems="flex-start"
               >
-                <Typography>국민은행 000000-11-2222222</Typography>
+                <Typography>{message.account.groom.person1.acc}</Typography>
               </Grid>
               <Grid item xs={2} container justifyContent="flex-end">
                 <IconButton
-                  onClick={() => handleCopy('국민은행 000000-11-2222222')}
+                  onClick={() => handleCopy(message.account.groom.person1.acc)}
                 >
                   <FileCopyIcon />
                 </IconButton>
@@ -108,7 +118,14 @@ const AccountAccordion: React.FC = () => {
         <AccordionDetails>
           <Grid container spacing={2}>
             <Grid item xs={12} container alignItems="flex-start">
-              <Typography variant="h6">타이틀</Typography>
+              <Box sx={{ mr: 1 }}>
+                <Typography variant="h6">
+                  {message.account.groom.person2.info}
+                </Typography>
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                {message.account.groom.person2.name}
+              </Typography>
             </Grid>
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid
@@ -118,11 +135,11 @@ const AccountAccordion: React.FC = () => {
                 direction="row"
                 alignItems="flex-start"
               >
-                <Typography>국민은행 000000-11-2222222</Typography>
+                <Typography>{message.account.groom.person2.acc}</Typography>
               </Grid>
               <Grid item xs={2} container justifyContent="flex-end">
                 <IconButton
-                  onClick={() => handleCopy('국민은행 000000-11-2222222')}
+                  onClick={() => handleCopy(message.account.groom.person2.acc)}
                 >
                   <FileCopyIcon />
                 </IconButton>
@@ -136,7 +153,14 @@ const AccountAccordion: React.FC = () => {
         <AccordionDetails>
           <Grid container spacing={2}>
             <Grid item xs={12} container alignItems="flex-start">
-              <Typography variant="h6">타이틀</Typography>
+              <Box sx={{ mr: 1 }}>
+                <Typography variant="h6">
+                  {message.account.groom.person3.info}
+                </Typography>
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                {message.account.groom.person3.name}
+              </Typography>
             </Grid>
             <Grid item xs={12} container alignItems="center" spacing={1}>
               <Grid
@@ -146,11 +170,11 @@ const AccountAccordion: React.FC = () => {
                 direction="row"
                 alignItems="flex-start"
               >
-                <Typography>국민은행 000000-11-2222222</Typography>
+                <Typography>{message.account.groom.person3.acc}</Typography>
               </Grid>
               <Grid item xs={2} container justifyContent="flex-end">
                 <IconButton
-                  onClick={() => handleCopy('국민은행 000000-11-2222222')}
+                  onClick={() => handleCopy(message.account.groom.person3.acc)}
                 >
                   <FileCopyIcon />
                 </IconButton>

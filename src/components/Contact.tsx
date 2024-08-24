@@ -1,8 +1,11 @@
 import CallIcon from '@mui/icons-material/Call';
 import SmsIcon from '@mui/icons-material/Sms';
 import { Box, IconButton, Paper, Typography } from '@mui/material';
+import useLanguage from '../hooks/useLanguage';
 
 const Contact: React.FC = () => {
+  const message = useLanguage();
+
   return (
     <>
       <Typography
@@ -16,17 +19,21 @@ const Contact: React.FC = () => {
           lineHeight: '2.5rem',
         }}
       >
-        혼주에게 연락하기
+        {message.contact.title}
       </Typography>
       <Box component="section" sx={{ p: 2 }}>
         <Paper sx={{ py: 2, display: 'flex' }}>
           <Box sx={{ flex: 1, p: 2, borderRight: '1px solid #ccc' }}>
-            <Typography variant="h6">신랑측 혼주</Typography>
+            <Typography variant="h6">
+              {message.contact.groomHost.title}
+            </Typography>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">아버지 이종식</Typography>
+              <Typography variant="body1">
+                {message.contact.groomHost.father.name}
+              </Typography>
               <Typography variant="body1">
                 <IconButton
-                  href="tel:+4712345678"
+                  href={`tel:${message.contact.groomHost.father.phone}`}
                   aria-label="Call 신랑 아버지"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -42,7 +49,7 @@ const Contact: React.FC = () => {
                   <CallIcon />
                 </IconButton>
                 <IconButton
-                  href="sms:+4712345678"
+                  href={`sms:${message.contact.groomHost.father.phone}`}
                   aria-label="Sms 신랑 아버지"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -59,10 +66,12 @@ const Contact: React.FC = () => {
               </Typography>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">어머니 양해숙</Typography>
+              <Typography variant="body1">
+                {message.contact.groomHost.mother.name}
+              </Typography>
               <Typography variant="body1">
                 <IconButton
-                  href="sms:+4712345678"
+                  href={message.contact.groomHost.mother.phone}
                   aria-label="Sms 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -78,7 +87,7 @@ const Contact: React.FC = () => {
                   <CallIcon />
                 </IconButton>
                 <IconButton
-                  href="sms:+4712345678"
+                  href={message.contact.groomHost.mother.phone}
                   aria-label="Sms 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -98,13 +107,19 @@ const Contact: React.FC = () => {
 
           {/* 신부측 연락처 */}
           <Box sx={{ flex: 1, p: 2 }}>
-            <Typography variant="h6">신부측 혼주</Typography>
+            <Typography variant="h6">
+              {message.contact.brideHost.title}
+            </Typography>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">아버지 후지와라 타쿠야</Typography>
+              <Typography variant="body1">
+                {message.contact.brideHost.father.name}
+              </Typography>
               <Typography variant="body2"></Typography>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">어머니 후지와라 리에코</Typography>
+              <Typography variant="body1">
+                {message.contact.brideHost.mother.name}
+              </Typography>
               <Typography variant="body2"></Typography>
             </Box>
           </Box>

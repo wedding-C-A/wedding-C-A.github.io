@@ -1,18 +1,106 @@
 import { useEffect, useState } from 'react';
 import locales from './locales.json'; // JSON 파일을 임포트
 
-interface GreetingStrings {
+type IWelcome = Record<string, never>;
+
+type IGreeting = {
   header: string;
   body: string;
   groom: string;
   bride: string;
-}
+};
 
-interface WelcomeStrings {}
+type IMap = {
+  title: string;
+  address: {
+    title: string;
+    info: string;
+    tel: string;
+  };
+  bus: {
+    title: string;
+    station1: {
+      title: string;
+      busRoutes: string;
+      localRoutes: string;
+    };
+    station2: {
+      title: string;
+      busRoutes: string;
+      localRoutes: string;
+    };
+  };
+  subway: {
+    title: string;
+    info: string;
+  };
+  highway: {
+    title: string;
+    cont1: string;
+    cont2: string;
+  };
+};
+
+type IAccount = {
+  body: {
+    cont1: string;
+    cont2: string;
+    cont3: string;
+    cont4: string;
+    cont5: string;
+  };
+  groom: {
+    title: string;
+    person1: {
+      info: string;
+      name: string;
+      acc: string;
+    };
+    person2: {
+      info: string;
+      name: string;
+      acc: string;
+    };
+    person3: {
+      info: string;
+      name: string;
+      acc: string;
+    };
+  };
+};
+
+type IContact = {
+  title: string;
+  groomHost: {
+    title: string;
+    father: {
+      name: string;
+      phone: string;
+    };
+    mother: {
+      name: string;
+      phone: string;
+    };
+  };
+  brideHost: {
+    title: string;
+    father: {
+      name: string;
+      phone: string;
+    };
+    mother: {
+      name: string;
+      phone: string;
+    };
+  };
+};
 
 interface LocaleStrings {
-  welcome: WelcomeStrings;
-  greeting: GreetingStrings;
+  welcome: IWelcome;
+  greeting: IGreeting;
+  map: IMap;
+  account: IAccount;
+  contact: IContact;
 }
 
 interface Locales {
