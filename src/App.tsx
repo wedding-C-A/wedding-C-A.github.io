@@ -1,4 +1,5 @@
 import { Box, Container, Paper } from '@mui/material';
+import { useEffect } from 'react';
 import './App.css';
 import Account from './components/Account';
 import Contact from './components/Contact';
@@ -10,6 +11,16 @@ import Map from './components/Map';
 import Sound from './components/Sound';
 
 const App = () => {
+  useEffect(() => {
+    const metaViewport = document.querySelector('meta[name="viewport"]');
+    if (metaViewport) {
+      metaViewport.setAttribute(
+        'content',
+        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      );
+    }
+  }, []);
+
   return (
     <Container maxWidth="md">
       <Sound />
