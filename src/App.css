@@ -3,3 +3,7 @@
   margin: 0 auto;
   text-align: center;
 }
+
+body {
+  touch-action: pan-x pan-y;
+}
