@@ -72,7 +72,7 @@ const Header = () => {
         >
           <Box
             component="img"
-            src="/assets/od0002.jpg"
+            src="/assets/header.jpg"
             alt=""
             sx={{
               maxWidth: '100%',
