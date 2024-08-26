@@ -8,7 +8,7 @@ const Header = () => {
           position: 'relative',
         }}
       >
-        <Box
+        {/* <Box
           className="vertical-item tit"
           sx={{
             zIndex: 10,
@@ -51,6 +51,17 @@ const Header = () => {
             <Typography>이철중</Typography>
             <Typography>후지와라 아야코</Typography>
           </Box>
+        </Box> */}
+
+        <Box py={2}>
+          <Box display="flex" justifyContent="center">
+            <Typography variant="h6" component="div" textAlign="center">
+              24 / 10 / 12
+            </Typography>
+          </Box>
+          <Box display="flex" justifyContent="center">
+            <Typography>SATURDAY</Typography>
+          </Box>
         </Box>
 
         <Box
@@ -71,6 +82,14 @@ const Header = () => {
               objectFit: 'cover',
             }}
           />
+        </Box>
+
+        <Box pt={2}>
+          <Box display="flex" justifyContent="center">
+            <Typography variant="h6" component="div" textAlign="center">
+              이철중 / 후지와라 아야코
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>
