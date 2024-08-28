@@ -4,6 +4,7 @@ import locales from './locales.json'; // JSON 파일을 임포트
 type IWelcome = Record<string, never>;
 
 type IGreeting = {
+  title: string;
   header: string;
   body: string;
   groom: string;
