@@ -58,9 +58,18 @@ const Header = () => {
             <Typography variant="h6" component="div" textAlign="center">
               24 / 10 / 12
             </Typography>
+            <Typography
+              variant="h6"
+              component="div"
+              textAlign="center"
+              color="#004cff"
+              ml={1}
+            >
+              (sat)
+            </Typography>
           </Box>
           <Box display="flex" justifyContent="center">
-            <Typography>SATURDAY</Typography>
+            <Typography>13:00</Typography>
           </Box>
         </Box>
 

@@ -14,9 +14,11 @@ const Contact: React.FC = () => {
           textAlign: 'center',
           background: '#f8f3ec',
           color: '#ba8f58',
-          fontSize: '0.750rem',
+          fontSize: '1.750rem',
           fontWeight: 400,
           lineHeight: '2.5rem',
+          letterSpacing: '0.2em',
+          fontFamily: 'Arizonia',
         }}
       >
         {message.contact.title}

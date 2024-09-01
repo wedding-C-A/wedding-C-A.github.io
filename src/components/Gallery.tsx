@@ -5,6 +5,7 @@ import {
   ImageList,
   ImageListItem,
   Modal,
+  Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -76,55 +77,73 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <Box component="section" sx={{ p: 2 }}>
-      <ImageList variant="quilted" cols={4} rowHeight={121}>
-        {itemData.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={item.cols || 1}
-            rows={item.rows || 1}
-            onClick={() => handleOpen(item.img)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <img
-              {...srcset(item.img, 121, item.rows, item.cols)}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+    <>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: 'center',
+          background: '#f8f3ec',
+          color: '#ba8f58',
+          fontSize: '1.750rem',
+          fontWeight: 400,
+          lineHeight: '2.5rem',
+          letterSpacing: '0.2em',
+          fontFamily: 'Arizonia',
+        }}
+      >
+        Gallery
+      </Typography>
 
-      <Modal open={open} onClose={handleClose} closeAfterTransition>
-        <Fade in={open} timeout={{ enter: 1500, exit: 1000 }}>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: 600,
-              bgcolor: 'background.paper',
-              boxShadow: 24,
-              p: 1,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {loading ? (
-              <CircularProgress />
-            ) : (
+      <Box component="section" sx={{ p: 2 }}>
+        <ImageList variant="quilted" cols={4} rowHeight={121}>
+          {itemData.map((item) => (
+            <ImageListItem
+              key={item.img}
+              cols={item.cols || 1}
+              rows={item.rows || 1}
+              onClick={() => handleOpen(item.img)}
+              sx={{ cursor: 'pointer' }}
+            >
               <img
-                src={selectedImage || ''}
-                alt="Selected"
-                style={{ width: '100%', height: 'auto' }}
+                {...srcset(item.img, 121, item.rows, item.cols)}
+                loading="lazy"
               />
-            )}
-          </Box>
-        </Fade>
-      </Modal>
-    </Box>
+            </ImageListItem>
+          ))}
+        </ImageList>
+
+        <Modal open={open} onClose={handleClose} closeAfterTransition>
+          <Fade in={open} timeout={{ enter: 1500, exit: 1000 }}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '90%',
+                maxWidth: 600,
+                bgcolor: 'background.paper',
+                boxShadow: 24,
+                p: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {loading ? (
+                <CircularProgress />
+              ) : (
+                <img
+                  src={selectedImage || ''}
+                  alt="Selected"
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              )}
+            </Box>
+          </Fade>
+        </Modal>
+      </Box>
+    </>
   );
 };
 

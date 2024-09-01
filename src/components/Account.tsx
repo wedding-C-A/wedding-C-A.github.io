@@ -188,6 +188,8 @@ const AccountAccordion: React.FC = () => {
 };
 
 const Account: React.FC = () => {
+  const message = useLanguage();
+
   return (
     <>
       <Typography
@@ -196,12 +198,14 @@ const Account: React.FC = () => {
           textAlign: 'center',
           background: '#f8f3ec',
           color: '#ba8f58',
-          fontSize: '0.750rem',
+          fontSize: '1.750rem',
           fontWeight: 400,
           lineHeight: '2.5rem',
+          letterSpacing: '0.2em',
+          fontFamily: 'Arizonia',
         }}
       >
-        마음을 전하실 곳
+        {message.account.title}
       </Typography>
       <Box component="section" sx={{ p: 2 }}>
         <Divider sx={{ mb: 2, borderStyle: 'dashed' }} />

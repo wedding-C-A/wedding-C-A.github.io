@@ -128,7 +128,7 @@ const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
   };
 
   return (
-    <Box component="section" sx={{ p: 2 }}>
+    <Box component="section" sx={{ py: 1 }}>
       <StyledCalendarWrapper>
         <StyledCalendar
           defaultView="month"
@@ -199,7 +199,7 @@ const CountDown: React.FC = () => {
   }, [targetDate]);
 
   return (
-    <Box component="section" sx={{ p: 2 }} style={styles.countContainer}>
+    <Box component="section" sx={{ p: 1 }} style={styles.countContainer}>
       <Grid container justifyContent="center" alignItems="center" spacing={2}>
         <Grid item>
           <Box textAlign="center">
@@ -244,16 +244,35 @@ const Dday: React.FC = () => {
   const targetDate = new Date('2024-10-12T13:00:00Z');
 
   return (
-    <Box
-      component="section"
-      sx={{
-        p: 2,
-      }}
-    >
-      <Calender targetDate={targetDate} />
+    <>
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: 'center',
+          background: '#f8f3ec',
+          color: '#ba8f58',
+          fontSize: '1.750rem',
+          fontWeight: 400,
+          lineHeight: '2.5rem',
+          letterSpacing: '0.2em',
+          fontFamily: 'Arizonia',
+        }}
+      >
+        Date
+      </Typography>
 
-      <CountDown />
-    </Box>
+      <Box
+        component="section"
+        sx={{
+          px: 1,
+          py: 2,
+        }}
+      >
+        <Calender targetDate={targetDate} />
+
+        <CountDown />
+      </Box>
+    </>
   );
 };
 

@@ -43,6 +43,7 @@ type IMap = {
 };
 
 type IAccount = {
+  title: string;
   body: {
     cont1: string;
     cont2: string;
