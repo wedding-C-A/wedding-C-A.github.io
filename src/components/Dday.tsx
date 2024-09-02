@@ -76,8 +76,9 @@ const StyledCalendarWrapper = styled(Box)(() => ({
     },
   },
   '.react-calendar__tile': {
-    padding: '5px 0px 18px',
+    padding: '20px 0px 18px',
     position: 'relative',
+    height: '80px',
   },
   '.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus, .react-calendar__tile--active':
     {
@@ -103,6 +104,18 @@ const heartStyle = {
   opacity: '0.5',
 };
 
+const heartStyle2 = {
+  position: 'absolute',
+  top: '30px',
+  width: '60px',
+  aspectRatio: '1',
+  clipPath: 'polygon(-41% 0, 50% 91%, 141% 0)',
+  borderStyle: 'solid',
+  borderWidth: '10px',
+  borderColor: 'transparent',
+  color: 'red',
+};
+
 const tileStyle: React.CSSProperties = {
   position: 'relative',
   textAlign: 'center',
@@ -120,6 +133,7 @@ const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
       return (
         <Box sx={tileStyle}>
           <Box sx={heartStyle}></Box>
+          <Box sx={heartStyle2}>13:00</Box>
         </Box>
       );
     }
