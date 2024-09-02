@@ -95,7 +95,7 @@ const Header = () => {
 
         <Box pt={2}>
           <Box display="flex" justifyContent="center">
-            <Typography variant="h6" component="div" textAlign="center">
+            <Typography variant="h5" component="div" textAlign="center">
               이철중 / 후지와라 아야코
             </Typography>
           </Box>

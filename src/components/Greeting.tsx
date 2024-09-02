@@ -75,7 +75,7 @@ const Greeting: React.FC = () => {
             <Typography
               variant="h3"
               sx={{
-                fontSize: '0.8rem',
+                fontSize: '1.3rem',
                 marginBottom: '2.5rem',
                 fontSizeAdjust: '0.875rem',
                 fontWeight: 400,
@@ -107,9 +107,9 @@ const Greeting: React.FC = () => {
             <Typography
               variant="h3"
               sx={{
-                fontSize: '0.813rem',
-                fontWeight: 300,
-                lineHeight: '1.5rem',
+                fontSize: '1.3rem',
+                fontWeight: 400,
+                lineHeight: '3rem',
                 color: '#111',
                 textAlign: 'center',
                 whiteSpace: 'pre-wrap',
@@ -119,12 +119,18 @@ const Greeting: React.FC = () => {
             </Typography>
           </Box>
           <Box>
-            <Typography variant="h2" sx={{ fontSize: '0.8rem' }}>
+            <Typography
+              variant="h2"
+              sx={{ fontSize: '1.1rem', fontWeight: '500' }}
+            >
               {message.greeting.groom}
             </Typography>
           </Box>
           <Box>
-            <Typography variant="h2" sx={{ fontSize: '0.8rem' }}>
+            <Typography
+              variant="h2"
+              sx={{ fontSize: '1.1rem', fontWeight: '500' }}
+            >
               {message.greeting.bride}
             </Typography>
           </Box>

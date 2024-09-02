@@ -268,8 +268,12 @@ const Dday: React.FC = () => {
           py: 2,
         }}
       >
-        <Typography>2024.10.12</Typography>
-        <Typography>토요일 오후 1시</Typography>
+        <Typography sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+          2024.10.12
+        </Typography>
+        <Typography sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+          토요일 오후 1시
+        </Typography>
 
         <Divider sx={{ m: 2 }} />
 
