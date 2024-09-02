@@ -15,6 +15,53 @@ const FadeInOutBox = styled(Box)(() => ({
   },
 }));
 
+interface HighlightTextProps {
+  text: string;
+  highlights: string[];
+}
+
+const HighlightText: React.FC<HighlightTextProps> = ({ text, highlights }) => {
+  const regexPattern = new RegExp(`(${highlights.join('|')})`, 'gi');
+  const parts = text.split(regexPattern);
+
+  return (
+    <Typography
+      variant="h3"
+      sx={{
+        fontSize: '1.3rem',
+        fontWeight: 400,
+        lineHeight: '3rem',
+        color: '#111',
+        textAlign: 'center',
+        whiteSpace: 'pre-wrap',
+      }}
+    >
+      {/* {parts.map(
+        (part, index) =>
+            <Typography component="span" key={index}  sx={{ color: '#d28686', fontSize: '1.3rem' }}>
+              {part}
+            </Typography>
+          ) : (
+            part
+          )
+      )} */}
+      {parts.map((part, index) =>
+        highlights.includes(part) ? (
+          <Typography
+            component="span"
+            key={index}
+            sx={{ color: '#d28686', fontSize: '1.3rem' }}
+          >
+            {part}
+          </Typography>
+        ) : (
+          part
+        ),
+      )}
+    </Typography>
+  );
+};
+
 const Greeting: React.FC = () => {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -104,7 +151,7 @@ const Greeting: React.FC = () => {
               },
             }}
           >
-            <Typography
+            {/* <Typography
               variant="h3"
               sx={{
                 fontSize: '1.3rem',
@@ -116,7 +163,11 @@ const Greeting: React.FC = () => {
               }}
             >
               {message.greeting.body}
-            </Typography>
+            </Typography> */}
+            <HighlightText
+              text={message.greeting.body}
+              highlights={['축복', '사랑']}
+            />
           </Box>
           <Box>
             <Typography
