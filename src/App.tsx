@@ -1,4 +1,10 @@
-import { Box, Container, Paper } from '@mui/material';
+import {
+  Box,
+  Container,
+  createTheme,
+  Paper,
+  ThemeProvider,
+} from '@mui/material';
 import './App.css';
 import Account from './components/Account';
 import Contact from './components/Contact';
@@ -9,32 +15,40 @@ import Header from './components/Header';
 import Map from './components/Map';
 import Sound from './components/Sound';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Noto Serif KR", serif',
+  },
+});
+
 const App = () => {
   return (
-    <Container maxWidth="md">
-      <Sound />
-      <Box sx={{ width: '100%' }}>
-        <Paper
-          sx={{
-            width: 'auto',
-          }}
-        >
-          <Header />
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <Sound />
+        <Box sx={{ width: '100%' }}>
+          <Paper
+            sx={{
+              width: 'auto',
+            }}
+          >
+            <Header />
 
-          <Greeting />
+            <Greeting />
 
-          <Gallery />
+            <Gallery />
 
-          <Dday />
+            <Dday />
 
-          <Map />
+            <Map />
 
-          <Account />
+            <Account />
 
-          <Contact />
-        </Paper>
-      </Box>
-    </Container>
+            <Contact />
+          </Paper>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 };
 
