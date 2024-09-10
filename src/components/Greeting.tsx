@@ -36,15 +36,6 @@ const HighlightText: React.FC<HighlightTextProps> = ({ text, highlights }) => {
         whiteSpace: 'pre-wrap',
       }}
     >
-      {/* {parts.map(
-        (part, index) =>
-            <Typography component="span" key={index}  sx={{ color: '#d28686', fontSize: '1.3rem' }}>
-              {part}
-            </Typography>
-          ) : (
-            part
-          )
-      )} */}
       {parts.map((part, index) =>
         highlights.includes(part) ? (
           <Typography
