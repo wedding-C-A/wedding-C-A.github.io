@@ -73,7 +73,7 @@ const Contact: React.FC = () => {
               </Typography>
               <Typography variant="body1">
                 <IconButton
-                  href={message.contact.groomHost.mother.phone}
+                  href={`tel:${message.contact.groomHost.mother.phone}`}
                   aria-label="Call 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
                   <CallIcon />
                 </IconButton>
                 <IconButton
-                  href={message.contact.groomHost.mother.phone}
+                  href={`sms:${message.contact.groomHost.mother.phone}`}
                   aria-label="Sms 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
