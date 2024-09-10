@@ -139,67 +139,28 @@ const Map: React.FC = () => {
               {message.map.highway.cont2}
             </Typography>
           </Box>
+
+          <Divider />
+
+          <Box component="dl">
+            <Typography variant="h6" component="dt">
+              주차안내
+            </Typography>
+
+            <Box
+              component="img"
+              src="/assets/parking.png"
+              alt=""
+              sx={{
+                maxWidth: '100%',
+                verticalAlign: 'top',
+                fontSize: 0,
+                border: 'none',
+                objectFit: 'cover',
+              }}
+            />
+          </Box>
         </Box>
-
-        {/* <List>
-          <ListItem>
-            <Typography variant="h6">{message.map.bus.title}</Typography>
-            <List>
-              <ListItem>
-                <Typography variant="body1">
-                  - 정류장 [성서우방타운 건너]{' '}
-                  <span style={{ color: '#6666FF' }}>
-                    간선 405, 503, 527, 564
-                  </span>{' '}
-                  <span style={{ color: '#FF6666' }}>지선 달서3, 달서5</span>
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  - 정류장 [성서우체국 건너]{' '}
-                  <span style={{ color: '#6666FF' }}>간선 564</span>
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  - 정류장 [성서산업단지역(1번출구)]{' '}
-                  <span style={{ color: '#6666FF' }}>간선 425, 518, 655</span>{' '}
-                  <span style={{ color: '#FF6666' }}>
-                    지선 달서1, 성서1-1, 성서2
-                  </span>
-                </Typography>
-              </ListItem>
-            </List>
-          </ListItem>
-
-          <ListItem>
-            <Typography variant="h6">지하철로 오시는 길</Typography>
-            <List>
-              <ListItem>
-                <Typography variant="body1">
-                  <span style={{ color: '#6666FF' }}>
-                    2호선 성서산업단지역 8번 출구 도보 3분
-                  </span>{' '}
-                  (동대구역(1호선) 대곡방면 &gt; 반월당역(2호선) 문양방면 환승
-                  &gt; 성서산업단지역)
-                </Typography>
-              </ListItem>
-            </List>
-          </ListItem>
-
-          <ListItem>
-            <Typography variant="h6">고속도로 이용 시</Typography>
-            <List>
-              <ListItem>
-                <Typography variant="body1">
-                  <span style={{ color: '#6666FF' }}>서대구 IC</span> - (경부,
-                  중앙, 구마) 서대구 IC에서 광주·마산 방면 1km 직진 대구·성주
-                  방면 우측 출구로 나오신 후 성주·성서 방면으로 내리시면 됩니다.
-                </Typography>
-              </ListItem>
-            </List>
-          </ListItem>
-        </List> */}
       </Box>
     </>
   );
