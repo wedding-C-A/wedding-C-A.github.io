@@ -18,6 +18,9 @@ import Sound from './components/Sound';
 const theme = createTheme({
   typography: {
     fontFamily: '"Noto Serif KR", serif',
+    allVariants: {
+      userSelect: 'none',
+    },
   },
 });
 
