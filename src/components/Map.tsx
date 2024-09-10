@@ -159,6 +159,18 @@ const Map: React.FC = () => {
                 objectFit: 'cover',
               }}
             />
+
+            <Box component="dl">
+              <Typography variant="body1" component="dd">
+                - AW호텔
+              </Typography>
+              <Typography variant="body1" component="dd">
+                - 환승주차장
+              </Typography>
+              <Typography variant="body1" component="dd">
+                - 차량등록사업소
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Box>
