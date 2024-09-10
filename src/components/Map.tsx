@@ -165,10 +165,10 @@ const Map: React.FC = () => {
                 - AW호텔
               </Typography>
               <Typography variant="body1" component="dd">
-                - 환승주차장
+                - 환승주차장 [무료이용]
               </Typography>
               <Typography variant="body1" component="dd">
-                - 차량등록사업소
+                - 차량등록사업소 [무료이용]
               </Typography>
             </Box>
           </Box>
