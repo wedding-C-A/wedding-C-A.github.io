@@ -120,13 +120,12 @@ const Contact: React.FC = () => {
                 <IconButton
                   href={`tel:${message.contact.groomHost.father.phone}`}
                   aria-label="Call 신부 아버지"
-                  disabled
                   sx={{
-                    backgroundColor: '#a3dad9',
+                    backgroundColor: '#eaeaea',
                     color: 'white',
                     borderRadius: '50%',
                     '&:hover': {
-                      backgroundColor: '#a3dad9',
+                      backgroundColor: '#eaeaea',
                     },
                     p: 1,
                     mr: 2,
@@ -137,13 +136,12 @@ const Contact: React.FC = () => {
                 <IconButton
                   href={`sms:${message.contact.groomHost.father.phone}`}
                   aria-label="Sms 신부 아버지"
-                  disabled
                   sx={{
-                    backgroundColor: '#a3dad9',
+                    backgroundColor: '#eaeaea',
                     color: 'white',
                     borderRadius: '50%',
                     '&:hover': {
-                      backgroundColor: '#a3dad9',
+                      backgroundColor: '#eaeaea',
                     },
                     p: 1,
                   }}
@@ -151,7 +149,6 @@ const Contact: React.FC = () => {
                   <SmsIcon />
                 </IconButton>
               </Typography>
-              <Typography variant="body2"></Typography>
             </Box>
             <Box sx={{ mt: 2 }}>
               <Typography variant="body1">
@@ -161,13 +158,12 @@ const Contact: React.FC = () => {
                 <IconButton
                   href={`tel:${message.contact.groomHost.father.phone}`}
                   aria-label="Call 신부 어머니"
-                  disabled
                   sx={{
-                    backgroundColor: '#a3dad9',
+                    backgroundColor: '#eaeaea',
                     color: 'white',
                     borderRadius: '50%',
                     '&:hover': {
-                      backgroundColor: '#a3dad9',
+                      backgroundColor: '#eaeaea',
                     },
                     p: 1,
                     mr: 2,
@@ -178,13 +174,12 @@ const Contact: React.FC = () => {
                 <IconButton
                   href={`sms:${message.contact.groomHost.father.phone}`}
                   aria-label="Sms 신부 어머니"
-                  disabled
                   sx={{
-                    backgroundColor: '#a3dad9',
+                    backgroundColor: '#eaeaea',
                     color: 'white',
                     borderRadius: '50%',
                     '&:hover': {
-                      backgroundColor: '#a3dad9',
+                      backgroundColor: '#eaeaea',
                     },
                     p: 1,
                   }}
