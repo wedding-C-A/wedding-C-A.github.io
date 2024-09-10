@@ -41,7 +41,7 @@ const HighlightText: React.FC<HighlightTextProps> = ({ text, highlights }) => {
           <Typography
             component="span"
             key={index}
-            sx={{ color: '#d28686', fontSize: '1.3rem' }}
+            sx={{ color: '#d28686', fontSize: '1.2rem' }}
           >
             {part}
           </Typography>
@@ -163,7 +163,7 @@ const Greeting: React.FC = () => {
           <Box>
             <Typography
               variant="h2"
-              sx={{ fontSize: '1.1rem', fontWeight: '500' }}
+              sx={{ fontSize: '1rem', fontWeight: '500' }}
             >
               {message.greeting.groom}
             </Typography>
@@ -171,7 +171,7 @@ const Greeting: React.FC = () => {
           <Box>
             <Typography
               variant="h2"
-              sx={{ fontSize: '1.1rem', fontWeight: '500' }}
+              sx={{ fontSize: '1rem', fontWeight: '500' }}
             >
               {message.greeting.bride}
             </Typography>
