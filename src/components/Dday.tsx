@@ -204,7 +204,7 @@ const CountDown: React.FC = () => {
         <Grid item>
           <Box textAlign="center">
             <Typography variant="h2">{timeLeft.days}</Typography>
-            <Typography variant="h2">DAYS</Typography>
+            <Typography variant="h5">DAYS</Typography>
           </Box>
         </Grid>
       </Grid>
