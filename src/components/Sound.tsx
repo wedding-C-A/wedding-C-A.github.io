@@ -17,19 +17,23 @@ const Sound = () => {
         position: 'fixed',
         right: 16,
         zIndex: 1000,
-        backgroundColor: '#e57373',
+        backgroundColor: '#cec2ac',
         '&:hover': {
-          backgroundColor: '#e57373',
+          backgroundColor: '#cec2ac',
         },
         '&:active': {
-          backgroundColor: '#e57373',
+          backgroundColor: '#cec2ac',
         },
         '&:focus': {
-          backgroundColor: '#e57373',
+          backgroundColor: '#cec2ac',
         },
       }}
     >
-      {isPlaying ? <VolumeUpIcon /> : <VolumeOffIcon />}
+      {isPlaying ? (
+        <VolumeUpIcon sx={{ color: 'white' }} />
+      ) : (
+        <VolumeOffIcon sx={{ color: 'white' }} />
+      )}
     </Fab>
   );
 };
