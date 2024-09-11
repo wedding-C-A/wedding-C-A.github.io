@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
               {message.contact.brideHost.title}
             </Typography>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                 {message.contact.brideHost.father.name}
               </Typography>
               <Typography variant="body1">
@@ -149,7 +149,7 @@ const Contact: React.FC = () => {
               </Typography>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                 {message.contact.brideHost.mother.name}
               </Typography>
               <Typography variant="body1">

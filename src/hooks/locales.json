@@ -82,11 +82,11 @@
       "brideHost": {
         "title": "신부측 혼주",
         "father": {
-          "name": "아버지 후지와라 타쿠야",
+          "name": "아버지\n후지와라 타쿠야",
           "phone": ""
         },
         "mother": {
-          "name": "어머니 후지와라 리에코",
+          "name": "어머니\n후지와라 리에코",
           "phone": ""
         }
       }
