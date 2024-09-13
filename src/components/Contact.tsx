@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
               <Typography variant="body1">
                 {message.contact.groomHost.father.name}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
                   href={`tel:${message.contact.groomHost.father.phone}`}
                   aria-label="Call 신랑 아버지"
@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
               <Typography variant="body1">
                 {message.contact.groomHost.mother.name}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
                   href={`tel:${message.contact.groomHost.mother.phone}`}
                   aria-label="Call 신랑 어머니"
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
               <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                 {message.contact.brideHost.father.name}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
                   aria-label="Call 신부 아버지"
                   sx={{
@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
               <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                 {message.contact.brideHost.mother.name}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
                   aria-label="Call 신부 어머니"
                   sx={{
