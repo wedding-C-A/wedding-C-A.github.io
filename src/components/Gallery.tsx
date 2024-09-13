@@ -39,12 +39,12 @@ const ImageContainer = styled(Box)(() => ({
   },
   '&:nth-of-type(2)': {
     animation: 'image2 4.5s infinite',
-    transform: 'rotate(8deg)',
-  },
-  '&:nth-of-type(3)': {
-    animation: 'image3 4s infinite',
     transform: 'rotate(-4deg)',
   },
+  // '&:nth-of-type(3)': {
+  //   animation: 'image3 4s infinite',
+  //   transform: 'rotate(-4deg)',
+  // },
   '@keyframes image1': {
     '50%': {
       transform: 'rotate(10deg)',
@@ -52,14 +52,14 @@ const ImageContainer = styled(Box)(() => ({
   },
   '@keyframes image2': {
     '50%': {
-      transform: 'rotate(-5deg)',
-    },
-  },
-  '@keyframes image3': {
-    '50%': {
       transform: 'rotate(6deg)',
     },
   },
+  // '@keyframes image3': {
+  //   '50%': {
+  //     transform: 'rotate(6deg)',
+  //   },
+  // },
 }));
 
 const GalleryImage = styled('img')({
@@ -82,10 +82,10 @@ const BouncingGallery: React.FC<IBouncingGallery> = ({ handleOpen }) => {
     <Box sx={{ overflow: 'hidden' }}>
       <Gallery2>
         <ImageContainer onClick={() => handleImageContainer(img1)}>
-          <GalleryImage src={img1} alt="Image 1" />
+          <GalleryImage src={img1} alt="img1" />
         </ImageContainer>
         <ImageContainer onClick={() => handleImageContainer(img2)}>
-          <GalleryImage src={img2} alt="Image 1" />
+          <GalleryImage src={img2} alt="img2" />
         </ImageContainer>
       </Gallery2>
     </Box>
