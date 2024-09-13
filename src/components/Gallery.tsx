@@ -5,9 +5,92 @@ import {
   ImageList,
   ImageListItem,
   Modal,
+  styled,
   Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+
+const Gallery2 = styled(Box)({
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  marginTop: '5rem',
+});
+
+const ImageContainer = styled(Box)(() => ({
+  padding: '0.5rem 0.5rem 1.5rem',
+  background: 'white',
+  position: 'relative',
+  boxShadow: '0 0 5px rgba(0,0,0,.5)',
+  transformOrigin: 'center -5rem',
+  '&::before': {
+    content: '""',
+    display: 'block',
+    height: '10rem',
+    width: '2px',
+    background: 'saddlebrown',
+    position: 'absolute',
+    bottom: '100%',
+    left: '50%',
+  },
+  '&:nth-of-type(1)': {
+    animation: 'image1 5s infinite',
+    transform: 'rotate(-10deg)',
+  },
+  '&:nth-of-type(2)': {
+    animation: 'image2 4.5s infinite',
+    transform: 'rotate(8deg)',
+  },
+  '&:nth-of-type(3)': {
+    animation: 'image3 4s infinite',
+    transform: 'rotate(-4deg)',
+  },
+  '@keyframes image1': {
+    '50%': {
+      transform: 'rotate(10deg)',
+    },
+  },
+  '@keyframes image2': {
+    '50%': {
+      transform: 'rotate(-5deg)',
+    },
+  },
+  '@keyframes image3': {
+    '50%': {
+      transform: 'rotate(6deg)',
+    },
+  },
+}));
+
+const GalleryImage = styled('img')({
+  maxWidth: '100%',
+});
+
+interface IBouncingGallery {
+  handleOpen: (img: string) => void;
+}
+
+const BouncingGallery: React.FC<IBouncingGallery> = ({ handleOpen }) => {
+  const img1 = '/assets/gallery/7.webp';
+  const img2 = '/assets/gallery/12.webp';
+
+  const handleImageContainer = (img: string) => {
+    handleOpen(img);
+  };
+
+  return (
+    <Box sx={{ overflow: 'hidden' }}>
+      <Gallery2>
+        <ImageContainer onClick={() => handleImageContainer(img1)}>
+          <GalleryImage src={img1} alt="Image 1" />
+        </ImageContainer>
+        <ImageContainer onClick={() => handleImageContainer(img2)}>
+          <GalleryImage src={img2} alt="Image 1" />
+        </ImageContainer>
+      </Gallery2>
+    </Box>
+  );
+};
 
 const Gallery: React.FC = () => {
   const itemData = [
@@ -29,15 +112,15 @@ const Gallery: React.FC = () => {
       cols: 2,
     },
     {
-      img: '/assets/gallery/7.webp',
+      img: '/assets/gallery/11.webp',
       rows: 2,
       cols: 2,
     },
-    {
-      img: '/assets/gallery/12.webp',
-      rows: 2,
-      cols: 2,
-    },
+    // {
+    //   img: '/assets/gallery/12.webp',
+    //   rows: 2,
+    //   cols: 2,
+    // },
     {
       img: '/assets/gallery/2.webp',
       cols: 2,
@@ -95,6 +178,8 @@ const Gallery: React.FC = () => {
       </Typography>
 
       <Box component="section" sx={{ p: 2 }}>
+        <BouncingGallery handleOpen={handleOpen} />
+
         <ImageList variant="quilted" cols={4} rowHeight={121}>
           {itemData.map((item) => (
             <ImageListItem
