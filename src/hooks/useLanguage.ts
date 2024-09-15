@@ -3,6 +3,11 @@ import locales from './locales.json'; // JSON 파일을 임포트
 
 type IWelcome = Record<string, never>;
 
+type IDate = {
+  body1: string;
+  body2: string;
+};
+
 type IGreeting = {
   title: string;
   header: string;
@@ -100,6 +105,7 @@ type IContact = {
 interface LocaleStrings {
   welcome: IWelcome;
   greeting: IGreeting;
+  date: IDate;
   map: IMap;
   account: IAccount;
   contact: IContact;

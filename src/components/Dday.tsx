@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import useLanguage from '../hooks/useLanguage';
 
 interface CalenderProps {
   targetDate: Date;
@@ -51,6 +52,10 @@ const StyledCalendarWrapper = styled(Box)(() => ({
     fontWeight: 800,
   },
   '.react-calendar__month-view__weekdays__weekday--weekend abbr[title="일요일"]':
+    {
+      color: '#ff0000',
+    },
+  '.react-calendar__month-view__weekdays__weekday--weekend abbr[title="日曜日"]':
     {
       color: '#ff0000',
     },
@@ -113,6 +118,9 @@ const tileStyle: React.CSSProperties = {
 };
 
 const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
+  const url = new URL(window.location.href);
+  const language = url.searchParams.get('lang') as 'ko' | 'jp';
+
   const addContent = ({ date }: { date: Date }) => {
     const targetDate = new Date('2024-10-12');
 
@@ -131,6 +139,7 @@ const Calender: React.FC<CalenderProps> = ({ targetDate }) => {
     <Box component="section" sx={{ py: 1 }}>
       <StyledCalendarWrapper>
         <StyledCalendar
+          locale={language === 'jp' ? 'ja-JP' : ''}
           defaultView="month"
           value={targetDate}
           calendarType="gregory"
@@ -241,6 +250,8 @@ const CountDown: React.FC = () => {
 };
 
 const Dday: React.FC = () => {
+  const message = useLanguage();
+
   const targetDate = new Date('2024-10-12T13:00:00Z');
 
   return (
@@ -269,10 +280,10 @@ const Dday: React.FC = () => {
         }}
       >
         <Typography sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-          2024.10.12
+          {message.date.body1}
         </Typography>
         <Typography sx={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-          토요일 오후 1시
+          {message.date.body2}
         </Typography>
 
         <Divider sx={{ m: 2 }} />
