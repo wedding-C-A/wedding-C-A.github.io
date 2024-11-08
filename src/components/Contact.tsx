@@ -35,7 +35,6 @@ const Contact: React.FC = () => {
               </Typography>
               <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
-                  href={`tel:${message.contact.groomHost.father.phone}`}
                   aria-label="Call 신랑 아버지"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -51,7 +50,6 @@ const Contact: React.FC = () => {
                   <CallIcon />
                 </IconButton>
                 <IconButton
-                  href={`sms:${message.contact.groomHost.father.phone}`}
                   aria-label="Sms 신랑 아버지"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -73,7 +71,6 @@ const Contact: React.FC = () => {
               </Typography>
               <Typography variant="body1" sx={{ mt: 1 }}>
                 <IconButton
-                  href={`tel:${message.contact.groomHost.mother.phone}`}
                   aria-label="Call 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
@@ -89,7 +86,6 @@ const Contact: React.FC = () => {
                   <CallIcon />
                 </IconButton>
                 <IconButton
-                  href={`sms:${message.contact.groomHost.mother.phone}`}
                   aria-label="Sms 신랑 어머니"
                   sx={{
                     backgroundColor: '#a3dad9',
